@@ -1946,6 +1946,22 @@
         });
         document.getElementById("slide-out").scrollTop = 0;
     }
+    
+    function format_date(date) {
+        var date = new Date(inputTime);
+        var y = date.getFullYear();
+        var m = date.getMonth() + 1;
+        m = m < 10 ? ('0' + m) : m;
+        var d = date.getDate();
+        d = d < 10 ? ('0' + d) : d;
+        var h = date.getHours();
+        h = h < 10 ? ('0' + h) : h;
+        var minute = date.getMinutes();
+        var second = date.getSeconds();
+        minute = minute < 10 ? ('0' + minute) : minute;
+        second = second < 10 ? ('0' + second) : second;
+        return y + '-' + m + '-' + d+' '+h+':'+minute+':'+second;
+    };
 
     function renderitem(itemdata, index) {
         var li = document.createElement('li');
@@ -1960,7 +1976,7 @@
         if (itemdata.type == 'dir') {
             iicon.innerHTML = 'folder';
             item.setAttribute("onclick", "listdir('" + encodeURI(itemdata.fullpath) + "')");
-            stats.innerHTML = "Mod.: " + date.toUTCString();
+            stats.innerHTML = "Mod: " + format_date(date);
         }
         else {
             nameparts = itemdata.name.split('.');
@@ -1987,7 +2003,7 @@
                 iicon.classList.add('mdi', 'mdi-file');
             }
             item.setAttribute("onclick", "loadfile('" + encodeURI(itemdata.fullpath) + "', '" + itemdata.name + "')");
-            stats.innerHTML = "Mod.: " + date.toUTCString() + "&nbsp;&nbsp;Size: " + (itemdata.size/1024).toFixed(1) + " KiB";
+            stats.innerHTML = "Mod: " + format_date(date) + "&nbsp;&nbsp;Size: " + (itemdata.size/1024).toFixed(1) + " KiB";
         }
         item.appendChild(iicon);
         var itext = document.createElement('div');
