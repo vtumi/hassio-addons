@@ -95,7 +95,7 @@ a.collection-item {
     color: #616161 !important;
     display: inline-block;
     float: right;
-    min-height: 64px;
+    min-height: 64px !important;
     padding-top: 8px !important;
     padding-left: 20px !important;
 }
@@ -416,6 +416,7 @@ footer {
 
 .fbicon_pad {
     min-height: 64px !important;
+    line-height: 36px !important;
 }
 
 .fbmenuicon_pad {
