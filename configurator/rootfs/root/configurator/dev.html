@@ -2002,7 +2002,7 @@
                 iicon.classList.add('mdi', 'mdi-file');
             }
             item.setAttribute("onclick", "loadfile('" + encodeURI(itemdata.fullpath) + "', '" + itemdata.name + "')");
-            stats.innerHTML = "Mod: " + format_date(date) + "&nbsp;&nbsp;Size: " + (itemdata.size/1024).toFixed(1) + " KiB";
+            stats.innerHTML = "Mod: " + format_date(date) + "<br/>Size: " + (itemdata.size/1024).toFixed(1) + " KiB";
         }
         item.appendChild(iicon);
         var itext = document.createElement('div');
