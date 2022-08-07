@@ -4,8 +4,6 @@ on:
   push:
     branches:
       - 'master'
-  schedule:
-    - cron: '30 17 * * *'
 
 jobs:
   docker:
@@ -27,10 +25,11 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
       -
-        name: Build and push amd64-addon-configurator
-        uses: docker/build-push-action@v3
+        name: Build and push configurator addon
+        uses: home-assistant/builder@master
         with:
-          context: ./configurator
-          push: true
-          tags: ${{ secrets.DOCKERHUB_USERNAME }}/amd64-addon-configurator:latest
-          build-args: BUILD_FROM=ghcr.io/home-assistant/amd64-base:3.14
+          args: |
+            --all \
+            --docker-hub-check \
+            --target configurator \
+            --docker-hub tumi
